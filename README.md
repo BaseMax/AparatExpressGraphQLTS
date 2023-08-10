@@ -88,6 +88,25 @@ AparatExpressGraphQLTS/
 └── README.md
 ```
 
+## GraphQL
+
+| Query Name       | Description                                       | Example                                           |
+| ---------------- | ------------------------------------------------- | ------------------------------------------------- |
+| `getUser`        | Get user details by ID.                          | `getUser(id: ID!): User`                          |
+| `getVideo`       | Get video details by ID.                         | `getVideo(id: ID!): Video`                        |
+| `listVideos`     | List videos with optional filtering and sorting. | `listVideos(filter: VideoFilter, sort: VideoSort, pagination: PaginationInput): [Video]` |
+| `searchVideos`   | Search videos by title or description.           | `searchVideos(query: String!): [Video]`           |
+| `createUser`     | Create a new user.                               | `createUser(input: CreateUserInput!): User`       |
+| `updateUser`     | Update user details by ID.                       | `updateUser(id: ID!, input: UpdateUserInput!): User` |
+| `deleteUser`     | Delete a user by ID.                             | `deleteUser(id: ID!): Boolean`                    |
+| `uploadVideo`    | Upload a new video.                              | `uploadVideo(input: UploadVideoInput!): Video`    |
+| `updateVideo`    | Update video details by ID.                     | `updateVideo(id: ID!, input: UpdateVideoInput!): Video` |
+| `deleteVideo`    | Delete a video by ID.                            | `deleteVideo(id: ID!): Boolean`                   |
+| `addLike`        | Add a like to a video.                           | `addLike(videoId: ID!): Video`                   |
+| `addComment`     | Add a comment to a video.                        | `addComment(videoId: ID!, input: CommentInput!): Comment` |
+| `deleteComment`  | Delete a comment by ID.                          | `deleteComment(id: ID!): Boolean`                |
+
+
 ## Contributing
 
 Contributions are welcome! If you find any issues or would like to suggest improvements, please open an issue or submit a pull request.
