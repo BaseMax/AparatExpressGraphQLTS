@@ -90,7 +90,7 @@ AparatExpressGraphQLTS/
 
 ## GraphQL
 
-| Query Name       | Description                                       | Example                                           |
+| Query/Mutation Name       | Description                                       | Example                                           |
 | ---------------- | ------------------------------------------------- | ------------------------------------------------- |
 | `getUser`        | Get user details by ID.                          | `getUser(id: ID!): User`                          |
 | `getVideo`       | Get video details by ID.                         | `getVideo(id: ID!): Video`                        |
@@ -105,7 +105,32 @@ AparatExpressGraphQLTS/
 | `addLike`        | Add a like to a video.                           | `addLike(videoId: ID!): Video`                   |
 | `addComment`     | Add a comment to a video.                        | `addComment(videoId: ID!, input: CommentInput!): Comment` |
 | `deleteComment`  | Delete a comment by ID.                          | `deleteComment(id: ID!): Boolean`                |
-
+| `listCategories` | List all video categories.                       | `listCategories: [Category]`                     |
+| `listComments`   | List comments for a video.                       | `listComments(videoId: ID!): [Comment]`           |
+| `getUserLikes`   | List videos liked by a user.                     | `getUserLikes(userId: ID!): [Video]`              |
+| `getPlaylist`    | Get playlist details by ID.                      | `getPlaylist(id: ID!): Playlist`                  |
+| `listPlaylists`  | List playlists with optional filtering.          | `listPlaylists(filter: PlaylistFilter): [Playlist]` |
+| `createPlaylist` | Create a new playlist.                           | `createPlaylist(input: CreatePlaylistInput!): Playlist` |
+| `updatePlaylist` | Update playlist details by ID.                  | `updatePlaylist(id: ID!, input: UpdatePlaylistInput!): Playlist` |
+| `deletePlaylist` | Delete a playlist by ID.                        | `deletePlaylist(id: ID!): Boolean`                |
+| `addVideoToPlaylist` | Add a video to a playlist.                   | `addVideoToPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
+| `removeVideoFromPlaylist` | Remove a video from a playlist.         | `removeVideoFromPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
+| `createUser`     | Create a new user.                               | `createUser(input: CreateUserInput!): User`       |
+| `updateUser`     | Update user details by ID.                       | `updateUser(id: ID!, input: UpdateUserInput!): User` |
+| `deleteUser`     | Delete a user by ID.                             | `deleteUser(id: ID!): Boolean`                    |
+| `uploadVideo`    | Upload a new video.                              | `uploadVideo(input: UploadVideoInput!): Video`    |
+| `updateVideo`    | Update video details by ID.                     | `updateVideo(id: ID!, input: UpdateVideoInput!): Video` |
+| `deleteVideo`    | Delete a video by ID.                            | `deleteVideo(id: ID!): Boolean`                   |
+| `addLike`        | Add a like to a video.                           | `addLike(videoId: ID!): Video`                   |
+| `removeLike`     | Remove a like from a video.                      | `removeLike(videoId: ID!): Video`                |
+| `addComment`     | Add a comment to a video.                        | `addComment(videoId: ID!, input: CommentInput!): Comment` |
+| `updateComment`  | Update a comment by ID.                          | `updateComment(id: ID!, input: UpdateCommentInput!): Comment` |
+| `deleteComment`  | Delete a comment by ID.                          | `deleteComment(id: ID!): Boolean`                |
+| `createPlaylist` | Create a new playlist.                           | `createPlaylist(input: CreatePlaylistInput!): Playlist` |
+| `updatePlaylist` | Update playlist details by ID.                  | `updatePlaylist(id: ID!, input: UpdatePlaylistInput!): Playlist` |
+| `deletePlaylist` | Delete a playlist by ID.                        | `deletePlaylist(id: ID!): Boolean`                |
+| `addVideoToPlaylist` | Add a video to a playlist.                   | `addVideoToPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
+| `removeVideoFromPlaylist` | Remove a video from a playlist.         | `removeVideoFromPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
 
 ## Contributing
 
