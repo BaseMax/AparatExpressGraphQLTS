@@ -96,15 +96,6 @@ AparatExpressGraphQLTS/
 | `getVideo`       | Get video details by ID.                         | `getVideo(id: ID!): Video`                        |
 | `listVideos`     | List videos with optional filtering and sorting. | `listVideos(filter: VideoFilter, sort: VideoSort, pagination: PaginationInput): [Video]` |
 | `searchVideos`   | Search videos by title or description.           | `searchVideos(query: String!): [Video]`           |
-| `createUser`     | Create a new user.                               | `createUser(input: CreateUserInput!): User`       |
-| `updateUser`     | Update user details by ID.                       | `updateUser(id: ID!, input: UpdateUserInput!): User` |
-| `deleteUser`     | Delete a user by ID.                             | `deleteUser(id: ID!): Boolean`                    |
-| `uploadVideo`    | Upload a new video.                              | `uploadVideo(input: UploadVideoInput!): Video`    |
-| `updateVideo`    | Update video details by ID.                     | `updateVideo(id: ID!, input: UpdateVideoInput!): Video` |
-| `deleteVideo`    | Delete a video by ID.                            | `deleteVideo(id: ID!): Boolean`                   |
-| `addLike`        | Add a like to a video.                           | `addLike(videoId: ID!): Video`                   |
-| `addComment`     | Add a comment to a video.                        | `addComment(videoId: ID!, input: CommentInput!): Comment` |
-| `deleteComment`  | Delete a comment by ID.                          | `deleteComment(id: ID!): Boolean`                |
 | `listCategories` | List all video categories.                       | `listCategories: [Category]`                     |
 | `listComments`   | List comments for a video.                       | `listComments(videoId: ID!): [Comment]`           |
 | `getUserLikes`   | List videos liked by a user.                     | `getUserLikes(userId: ID!): [Video]`              |
@@ -115,6 +106,12 @@ AparatExpressGraphQLTS/
 | `deletePlaylist` | Delete a playlist by ID.                        | `deletePlaylist(id: ID!): Boolean`                |
 | `addVideoToPlaylist` | Add a video to a playlist.                   | `addVideoToPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
 | `removeVideoFromPlaylist` | Remove a video from a playlist.         | `removeVideoFromPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
+| `getTag`         | Get tag details by ID.                           | `getTag(id: ID!): Tag`                            |
+| `listTags`       | List all available tags.                         | `listTags: [Tag]`                                |
+| `getAuthor`      | Get author details by ID.                        | `getAuthor(id: ID!): Author`                     |
+| `listAuthors`    | List all authors.                                | `listAuthors: [Author]`                          |
+| `getCategory`    | Get category details by ID.                      | `getCategory(id: ID!): Category`                 |
+| `getComment`     | Get comment details by ID.                       | `getComment(id: ID!): Comment`                   |
 | `createUser`     | Create a new user.                               | `createUser(input: CreateUserInput!): User`       |
 | `updateUser`     | Update user details by ID.                       | `updateUser(id: ID!, input: UpdateUserInput!): User` |
 | `deleteUser`     | Delete a user by ID.                             | `deleteUser(id: ID!): Boolean`                    |
@@ -131,6 +128,18 @@ AparatExpressGraphQLTS/
 | `deletePlaylist` | Delete a playlist by ID.                        | `deletePlaylist(id: ID!): Boolean`                |
 | `addVideoToPlaylist` | Add a video to a playlist.                   | `addVideoToPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
 | `removeVideoFromPlaylist` | Remove a video from a playlist.         | `removeVideoFromPlaylist(playlistId: ID!, videoId: ID!): Playlist` |
+| `createTag`      | Create a new tag.                                | `createTag(input: CreateTagInput!): Tag`          |
+| `updateTag`      | Update tag details by ID.                        | `updateTag(id: ID!, input: UpdateTagInput!): Tag` |
+| `deleteTag`      | Delete a tag by ID.                              | `deleteTag(id: ID!): Boolean`                    |
+| `createAuthor`   | Create a new author.                             | `createAuthor(input: CreateAuthorInput!): Author` |
+| `updateAuthor`   | Update author details by ID.                     | `updateAuthor(id: ID!, input: UpdateAuthorInput!): Author` |
+| `deleteAuthor`   | Delete an author by ID.                          | `deleteAuthor(id: ID!): Boolean`                 |
+| `createCategory` | Create a new category.                           | `createCategory(input: CreateCategoryInput!): Category` |
+| `updateCategory` | Update category details by ID.                  | `updateCategory(id: ID!, input: UpdateCategoryInput!): Category` |
+| `deleteCategory` | Delete a category by ID.                        | `deleteCategory(id: ID!): Boolean`                |
+| `createComment`  | Create a new comment.                            | `createComment(input: CreateCommentInput!): Comment` |
+| `updateComment`  | Update comment details by ID.                   | `updateComment(id: ID!, input: UpdateCommentInput!): Comment` |
+| `deleteComment`  | Delete a comment by ID.                         | `deleteComment(id: ID!): Boolean`                |
 
 ## Contributing
 
