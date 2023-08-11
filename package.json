@@ -1,0 +1,23 @@
+{
+  "name": "aparatexpressgraphqlts",
+  "version": "1.0.0",
+  "description": "AparatExpressGraphQLTS is a TypeScript-based GraphQL web service designed to mimic the functionality of the popular video sharing platform Aparat (similar to YouTube). This project utilizes the Express framework to create a custom GraphQL API, providing users with features for uploading, viewing, and interacting with videos and other media content.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BaseMax/AparatExpressGraphQLTS.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BaseMax/AparatExpressGraphQLTS/issues"
+  },
+  "homepage": "https://github.com/BaseMax/AparatExpressGraphQLTS#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
