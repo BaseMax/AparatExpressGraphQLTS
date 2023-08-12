@@ -21,10 +21,13 @@
   },
   "homepage": "https://github.com/BaseMax/AparatExpressGraphQLTS#readme",
   "dependencies": {
+    "apollo-server-core": "^3.12.0",
     "apollo-server-express": "^3.12.0",
     "express": "^4.18.2",
     "express-graphql": "^0.12.0",
-    "graphql": "^15.8.0"
+    "graphql": "^15.8.0",
+    "reflect-metadata": "^0.1.13",
+    "type-graphql": "^1.1.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
