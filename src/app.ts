@@ -1,30 +1,35 @@
+import "reflect-metadata";
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import resolvers from './schema/resolvers' ; 
-import {typeDefs} from './schema/schema' ;
+import { buildSchema } from 'type-graphql';
+import { HelloWorldResolver } from './resolvers/HelloWorldResolver';
+import { ApolloServerPluginInlineTrace } from "apollo-server-core";
 
-const app = express()
+(async ()=>{
 
-const server = new ApolloServer({
-    resolvers ,
-    typeDefs , 
-})
+    const app = express()
+    const port = process.env.PORT || 3000 ;
 
-
-async function startApolloServer() {
-    await server.start();
-  
-    server.applyMiddleware({ app });
-  
-    const PORT = process.env.PORT || 3000;
-  
-    app.listen(PORT, () => {
-      console.log(`Server is running at http://localhost:${PORT}`);
-    });
-}
+    const apolloServer = new ApolloServer({
+        schema : await buildSchema({
+            resolvers : [
+                HelloWorldResolver
+            ]
+        }) , 
+        context : ({req , res})=>({req , res}) , 
+        plugins: [ApolloServerPluginInlineTrace()] , 
+    })
 
 
-startApolloServer().catch(err=>{
-    console.error(err)
-})
+    await apolloServer.start()
+
+    apolloServer.applyMiddleware({app , cors : false});
+
+    app.listen(port , ()=>{
+        console.clear();
+        console.log(process.version);
+        console.log(`app runing on http://localhost:${port}${apolloServer.graphqlPath}`);
+    })
+})()
+
 
