@@ -1,7 +1,7 @@
 import { User } from "../models/UserModel";
-import { Arg, Query, Resolver } from "type-graphql";
+import { Arg, Authorized, Ctx, Query, Resolver } from "type-graphql";
 import { UserEntity } from "../object-types/userEntity";
-import { StatusResult } from "src/object-types/status-result";
+import { ContextType } from "src/interfaces/contextType";
 
 
 @Resolver()
@@ -11,10 +11,12 @@ export class UserResolver{
         return await User.find()
     }
 
+    @Authorized()
     @Query(()=>UserEntity)
-    async findOneUser(
-        @Arg('id' , ()=>String) id :string 
+    async me(
+        @Ctx() context:ContextType 
     ){
-        return await User.findById(id)
+        const user = context.req.user ;
+        return user ; 
     }
 }
