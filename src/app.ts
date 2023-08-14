@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import './jwt/authMiddleware'
+import './middlewares/authMiddleware'
 
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
@@ -9,7 +9,7 @@ import { ApolloServerPluginInlineTrace } from "apollo-server-core";
 import { config } from "dotenv";
 import mongoose from "mongoose";
 import { UserResolver } from "./resolvers/UserResolver";
-import { authChecker } from "./jwt/authMiddleware";
+import { authChecker } from "./middlewares/authMiddleware";
 import passport from "passport";
 import { AuthResolver } from "./resolvers/AuthResolver";
 
