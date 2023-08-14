@@ -1,6 +1,6 @@
 import { User } from "../models/UserModel";
 import { Arg, Authorized, Ctx, Query, Resolver } from "type-graphql";
-import { UserEntity } from "../object-types/userEntity";
+import { UserEntity } from "../object-types/user-entity";
 import { ContextType } from "src/interfaces/contextType";
 
 
@@ -8,7 +8,7 @@ import { ContextType } from "src/interfaces/contextType";
 export class UserResolver{
     @Query(()=>[UserEntity])
     async findAllUsers(){
-        return await User.find()
+        return User.find() 
     }
 
     @Authorized()
