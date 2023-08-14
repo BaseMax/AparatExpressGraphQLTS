@@ -48,5 +48,3 @@ import { AuthResolver } from "./resolvers/AuthResolver";
         console.log(`app runing on http://localhost:${port}${apolloServer.graphqlPath}`);
     })
 })()
-
-
