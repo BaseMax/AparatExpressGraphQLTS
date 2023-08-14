@@ -1,5 +1,5 @@
 import { HttpError } from "../errors/http-error";
-import { User } from "../models/UserModel";
+import { User } from "../models/User";
 import { UserEntity } from "../object-types/user-entity";
 
 export class UserService {
