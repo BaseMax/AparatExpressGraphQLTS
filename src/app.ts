@@ -1,4 +1,6 @@
 import "reflect-metadata";
+import './jwt/authMiddleware'
+
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { buildSchemaSync } from 'type-graphql';
@@ -8,6 +10,8 @@ import { config } from "dotenv";
 import mongoose from "mongoose";
 import { UserResolver } from "./resolvers/UserResolver";
 import { authChecker } from "./jwt/authMiddleware";
+import passport from "passport";
+import { AuthResolver } from "./resolvers/AuthResolver";
 
 (async ()=>{
     config()
@@ -15,17 +19,21 @@ import { authChecker } from "./jwt/authMiddleware";
     const app = express()
     const port = process.env.PORT || 3000 ;
 
+    app.use(passport.initialize())
+
     const schema = buildSchemaSync({
         resolvers : [
             HelloWorldResolver , 
-            UserResolver 
+            UserResolver  , 
+            AuthResolver ,
         ] , 
-        authChecker 
+        authChecker ,
+        validate : false 
     }) ;
 
     const apolloServer = new ApolloServer({
         schema , 
-        context : ({req , res})=>({req , res}) , 
+        context: ({ req , res }) => ({req, res}),
         plugins: [ApolloServerPluginInlineTrace()] , 
     })
 
