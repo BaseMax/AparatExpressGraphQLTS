@@ -3,7 +3,7 @@ import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { HttpError } from "../errors/http-error";
 import { LoginInput } from "../inputs/loginInput";
 import { RegisterInput } from "../inputs/registerInput";
-import { User } from "../models/UserModel";
+import { User } from "../models/User";
 import { Auth } from "../object-types/login";
 
 export class AuthService {
