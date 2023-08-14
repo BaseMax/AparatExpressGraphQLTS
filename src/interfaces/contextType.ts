@@ -1,7 +1,7 @@
-import { Request , Response } from 'express'
+import { NextFunction, Request , Response } from 'express'
 
 export interface ContextType {
     req : Request , 
     res : Response ,
-    user : any , 
+    next : NextFunction
 }
