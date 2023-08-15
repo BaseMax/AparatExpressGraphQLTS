@@ -4,7 +4,7 @@ import { HttpError } from "../errors/http-error";
 import { LoginInput } from "../inputs/loginInput";
 import { RegisterInput } from "../inputs/registerInput";
 import { User } from "../models/User";
-import { Auth } from "../object-types/login";
+import { Auth } from "../object-types/auth";
 
 export class AuthService {
 
