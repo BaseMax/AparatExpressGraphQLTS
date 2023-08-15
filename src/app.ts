@@ -1,40 +1,48 @@
-import "reflect-metadata";
-import './middlewares/authMiddleware'
+import { config } from "dotenv";
 
+config()
+
+import "reflect-metadata";
+import './jwt/jwtStrategy' ;
 import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
 import { buildSchemaSync } from 'type-graphql';
 import { HelloWorldResolver } from './resolvers/HelloWorldResolver';
 import { ApolloServerPluginInlineTrace } from "apollo-server-core";
-import { config } from "dotenv";
 import mongoose from "mongoose";
 import { UserResolver } from "./resolvers/UserResolver";
 import { authChecker } from "./middlewares/authMiddleware";
-import passport from "passport";
 import { AuthResolver } from "./resolvers/AuthResolver";
+import { VideoResolver } from "./resolvers/VideoResolver";
+import passport from "passport";
+import { graphqlUploadExpress } from "graphql-upload-ts";
+import { typeDefs } from "./types/typeDefs";
 
 (async ()=>{
-    config()
-    
     const app = express()
     const port = process.env.PORT || 3000 ;
 
-    app.use(passport.initialize())
+
+    app.use(passport.initialize());
+    app.use(graphqlUploadExpress());
 
     const schema = buildSchemaSync({
         resolvers : [
             HelloWorldResolver , 
             UserResolver  , 
             AuthResolver ,
+            VideoResolver ,
         ] , 
         authChecker ,
-        validate : false 
+        validate : false ,
     }) ;
 
     const apolloServer = new ApolloServer({
         schema , 
+        typeDefs , 
         context: ({ req , res }) => ({req, res}),
         plugins: [ApolloServerPluginInlineTrace()] , 
+        
     })
 
 
