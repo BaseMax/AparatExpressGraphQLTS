@@ -2,7 +2,7 @@ import { LoginInput } from "../inputs/loginInput";
 import { RegisterInput } from "../inputs/registerInput";
 import { AuthService } from "../services/AuthService";
 import { Arg , Mutation, Resolver } from "type-graphql";
-import { Auth } from "../object-types/login";
+import { Auth } from "../object-types/auth";
 
 @Resolver(of => Auth)
 export class AuthResolver {
