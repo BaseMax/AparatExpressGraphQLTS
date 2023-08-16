@@ -1,6 +1,6 @@
 import { NextFunction, Request , Response } from 'express'
 
-export interface ContextType {
+export type ContextType = {
     req : Request , 
     res : Response ,
     next : NextFunction
