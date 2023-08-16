@@ -1,4 +1,4 @@
-import { compare, compareSync } from "bcrypt";
+import { compareSync } from "bcrypt";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { HttpError } from "../errors/http-error";
 import { LoginInput } from "../inputs/loginInput";
