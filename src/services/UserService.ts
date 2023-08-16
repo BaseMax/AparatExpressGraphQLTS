@@ -1,6 +1,6 @@
 import { HttpError } from "../errors/http-error";
 import { User } from "../models/User";
-import { UserEntity } from "../object-types/user-entity";
+import { UserEntity } from "../object-types/entity/user-entity";
 
 export class UserService {
     async findById(id : string):Promise<UserEntity>{
