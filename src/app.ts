@@ -4,19 +4,19 @@ config()
 
 import "reflect-metadata";
 import './jwt/jwtStrategy' ;
-import { ApolloServer } from 'apollo-server-express';
 import express from 'express';
-import { buildSchemaSync } from 'type-graphql';
-import { HelloWorldResolver } from './resolvers/HelloWorldResolver';
-import { ApolloServerPluginInlineTrace } from "apollo-server-core";
 import mongoose from "mongoose";
+import passport from "passport";
+import { buildSchemaSync } from 'type-graphql';
+import { ApolloServer } from 'apollo-server-express';
+import { ApolloServerPluginInlineTrace } from "apollo-server-core";
 import { UserResolver } from "./resolvers/UserResolver";
 import { authChecker } from "./middlewares/authMiddleware";
+
+
 import { AuthResolver } from "./resolvers/AuthResolver";
 import { VideoResolver } from "./resolvers/VideoResolver";
-import passport from "passport";
-import { graphqlUploadExpress } from "graphql-upload-ts";
-import { typeDefs } from "./types/typeDefs";
+import { HelloWorldResolver } from './resolvers/HelloWorldResolver';
 
 (async ()=>{
     const app = express()
@@ -24,7 +24,6 @@ import { typeDefs } from "./types/typeDefs";
 
 
     app.use(passport.initialize());
-    app.use(graphqlUploadExpress());
 
     const schema = buildSchemaSync({
         resolvers : [
@@ -39,10 +38,11 @@ import { typeDefs } from "./types/typeDefs";
 
     const apolloServer = new ApolloServer({
         schema , 
-        typeDefs , 
         context: ({ req , res }) => ({req, res}),
+        csrfPrevention: true,
+        cache: 'bounded',
         plugins: [ApolloServerPluginInlineTrace()] , 
-        
+        introspection: true,
     })
 
 
