@@ -1,24 +1,31 @@
 import { CreateVideoInput } from "../inputs/createVideoInput";
 import { StatusResult } from "../object-types/status-result";
-import { createWriteStream } from 'fs' ;
+import { UserEntity } from "../object-types/entity/user-entity";
+import { Video } from "../models/Video";
+
 
 export class VideoService {
     
     async create(
-        createVideoInput:CreateVideoInput , 
-        file : any
+        createVideoInput:CreateVideoInput ,
+        user : UserEntity
     ):Promise<StatusResult>{
-        const { createReadStream, filename, mimetype, encoding } = await file;
-        const stream = createReadStream() ; 
-        const path = `uploads/${filename}`;
-        const writeStream = createWriteStream(path)
-        await stream.pipe(writeStream) ; 
-
-        console.log(file)
+        
+        const result = await Video.create({
+            author : user.id , 
+            ...createVideoInput
+        })
 
         return {
             success : true , 
-            message : 'file uploaded' ,
+            message : 'Item created successfully' ,
+            id : result.id , 
         }
+    }
+
+    async findVideoByAuthor(user:UserEntity):Promise<Video[]>{
+        const  result = await Video.find({ authorId: user.id})
+
+        return result 
     }
 }
