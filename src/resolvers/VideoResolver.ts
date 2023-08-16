@@ -1,8 +1,8 @@
-import { FileUpload, GraphQLUpload } from "graphql-upload-ts";
-import { CreateVideoInput } from "../inputs/createVideoInput";
-import { StatusResult } from "../object-types/status-result";
 import { VideoService } from "../services/VideoService";
-import { Arg, Mutation, Resolver  } from "type-graphql";
+import { Arg, Authorized, Ctx, Mutation, Query, Resolver  } from "type-graphql";
+import { StatusResult } from "../object-types/status-result";
+import { CreateVideoInput } from "../inputs/createVideoInput";
+import { VideoEntity } from "../object-types/entity/video-entity";
 
 @Resolver()
 export class VideoResolver {
@@ -13,8 +13,21 @@ export class VideoResolver {
         this.videoService = new VideoService()
     }
 
-    @Mutation(()=>String)
-    async uploadFile(@Arg("file", () => GraphQLUpload) file: FileUpload): Promise<FileUpload> {
-        return file ; 
+    @Authorized()
+    @Mutation(()=>StatusResult)
+    async createVideo(
+        @Arg('createVideoInput' , ()=>CreateVideoInput)createVideoInput:CreateVideoInput ,
+        @Ctx() context,
+        ){
+        return this.videoService.create(createVideoInput , context.req.user)
+    }
+
+    @Authorized()
+    @Query((()=>[VideoEntity]))
+    async findAllVideoByAuthor(
+        @Ctx() context,
+        ){
+        // console.log(context.req.user)
+        return this.videoService.findVideoByAuthor(context.req.user)
     }
 }
