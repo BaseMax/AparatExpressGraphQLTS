@@ -1,15 +1,12 @@
-import { HttpError } from "../errors/http-error";
-import { User } from "../models/User";
-import { UserEntity } from "../object-types/entity/user-entity";
+import { Prisma, PrismaClient, User } from "@prisma/client";
 
 export class UserService {
-    async findById(id : string):Promise<UserEntity>{
-        const user = await User.findById(id)
+    private readonly prisma : PrismaClient
 
-        if(!user){
-            throw new HttpError(400 , 'User is invalid')
-        }
-
-        return user ; 
+    constructor(){
+        this.prisma = new PrismaClient()
+    }
+    async findOne(where : Prisma.UserWhereInput):Promise<User>{
+        return await this.prisma.user.findFirst({where})
     }
 }
