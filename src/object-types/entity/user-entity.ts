@@ -1,5 +1,5 @@
-import mongoose from "mongoose";
 import { Field, ID, ObjectType } from "type-graphql";
+import { VideoEntity } from "./video-entity";
 
 @ObjectType()
 export class UserEntity{
@@ -7,7 +7,10 @@ export class UserEntity{
     id : string
 
     @Field(()=>String)
-    name : string 
+    firstName : string 
+
+    @Field(()=>String)
+    lastName : string 
 
     @Field(()=>String)
     email : string 
@@ -15,6 +18,9 @@ export class UserEntity{
     @Field(()=>String)
     username : string 
 
-    @Field(()=>String)
-    role : string 
+    @Field(()=>[String])
+    role : string[] 
+
+    @Field(()=>[VideoEntity])
+    videos : VideoEntity[]
 }
