@@ -1,0 +1,59 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id         String   @id @default(uuid())
+  firstName   String 
+  lastName    String 
+  email       String @unique
+  username    String @unique 
+  password    String 
+  role        Role[]
+  videos  Video[] @relation("UserToVideo")
+}
+
+
+model Video {
+  id          String   @id @default(uuid())
+  title       String
+  description String 
+  url         String
+  path        String
+  categoryId  String?
+  authorId    String 
+  category    Category? @relation("CategoryToVideo", fields: [categoryId], references: [id])
+  author      User     @relation("UserToVideo", fields: [authorId], references: [id])
+  comments    Comment[]
+}
+
+
+model Comment {
+  id         String   @id @default(uuid())
+  text       String
+  videoId    String 
+  video      Video   @relation(fields: [videoId], references: [id])
+}
+
+
+model Category {
+  id       String   @id @default(uuid())
+  name     String
+  videos   Video[]  @relation("CategoryToVideo")
+}
+
+
+enum Role {
+  ADMIN 
+  USER 
+}
+
