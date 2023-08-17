@@ -5,6 +5,6 @@ export class Auth {
     @Field(()=>String )
     access_token : string ; 
 
-    @Field(()=>String)
-    role : string 
+    @Field(()=>[String])
+    role : string[] 
 }
