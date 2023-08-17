@@ -17,7 +17,7 @@ AparatExpressGraphQLTS is a TypeScript-based GraphQL web service designed to mim
 - **Express**: A fast, unopinionated web framework for Node.js.
 - **GraphQL**: A query language for APIs that enables more efficient and flexible data retrieval.
 - **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript.
-- **MongoDB**: A NoSQL database for storing and managing data.
+- **Prisma**: A NoSQL database for storing and managing data.
 
 ## Prerequisites
 
@@ -26,6 +26,34 @@ Before you begin, ensure you have met the following requirements:
 - Node.js installed (https://nodejs.org/)
 - MongoDB installed and running (https://www.mongodb.com/try/download/community)
 - Git (optional) for cloning the repository
+
+
+
+## Demo 
+
+![Demo](./screenshots/createVideo.png)
+
+![Demo](./screenshots/findAllUserVideo.png)
+
+![Demo](./screenshots/findAllUserVideoQuery.png)
+
+![Demo](./screenshots/findByUserVideo-output.png)
+
+![Demo](./screenshots/findOneByUserVideo.png)
+
+![Demo](./screenshots/login-query.png)
+
+![Demo](./screenshots/me-output.png)
+
+![Demo](./screenshots/me-query.png)
+
+![Demo](./screenshots/register-output.png)
+
+![Demo](./screenshots/register-query.png)
+
+![Demo](./screenshots/video-findById.png)
+
+
 
 ## Getting Started
 
@@ -49,8 +77,9 @@ Set up your environment variables by creating a `.env` file at the root of the p
 **Start the server:**
 
 ```bash
-npm start
+npm run start:dev
 ```
+
 
 The GraphQL playground will be accessible at `http://localhost:3000/graphql` by default. You can explore and test the API using this interface.
 
