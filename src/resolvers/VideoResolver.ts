@@ -3,6 +3,7 @@ import { Arg, Authorized, Ctx, Mutation, Query, Resolver  } from "type-graphql";
 import { StatusResult } from "../object-types/status-result";
 import { CreateVideoInput } from "../inputs/createVideoInput";
 import { VideoEntity } from "../object-types/entity/video-entity";
+import { Video } from "@prisma/client";
 
 @Resolver()
 export class VideoResolver {
@@ -13,6 +14,27 @@ export class VideoResolver {
         this.videoService = new VideoService()
     }
 
+    // User access 
+
+        
+    @Authorized()
+    @Query(()=>[VideoEntity])
+    findUAllUserVideo(
+        @Ctx() context 
+    ):Promise<Video[]>{
+        return this.videoService.findUAllUserVideo(context.req.user);
+    }
+
+
+    @Authorized()
+    @Query(()=>VideoEntity)
+    findOneUserVideo(
+        @Arg('id' , ()=>String) id : string,
+        @Ctx() context 
+    ):Promise<Video>{
+        return this.videoService.findOneUserVideo(id , context.req.user);
+    }
+
     @Authorized()
     @Mutation(()=>StatusResult)
     async createVideo(
@@ -20,14 +42,5 @@ export class VideoResolver {
         @Ctx() context,
         ){
         return this.videoService.create(createVideoInput , context.req.user)
-    }
-
-    @Authorized()
-    @Query((()=>[VideoEntity]))
-    async findAllVideoByAuthor(
-        @Ctx() context,
-        ){
-        // console.log(context.req.user)
-        return this.videoService.findVideoByAuthor(context.req.user)
     }
 }
