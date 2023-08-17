@@ -1,12 +1,16 @@
-import { compareSync } from "bcrypt";
+import { compare, compareSync } from "bcrypt";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
-import { HttpError } from "../errors/http-error";
 import { LoginInput } from "../inputs/loginInput";
 import { RegisterInput } from "../inputs/registerInput";
-import { User } from "../models/User";
 import { Auth } from "../object-types/auth";
+import { PrismaClient, Role } from "@prisma/client";
 
 export class AuthService {
+    private readonly prisma:PrismaClient ; 
+
+    constructor(){
+        this.prisma = new PrismaClient()
+    }
 
     private _signToken(payload:JwtPayload){
         return sign(
@@ -26,17 +30,16 @@ export class AuthService {
             password , 
         } = loginInput ;
 
-        const user = await User.findOne({username}) ;
-
+        const user = await this.prisma.user.findUnique({where : {username}}) ;
 
         if(!user){
-            throw new HttpError(400 , 'Username is invalid')
+            throw new Error('Username is invalid')
         }
         
-        const isValidPassword = compareSync(password , user.password) ;
+        const isValidPassword = password === user.password;
 
         if(!isValidPassword){
-            throw new HttpError(400 , 'Password is Invalid');
+            throw new Error('Password is not valid')
         }
 
         const payload:JwtPayload = {
@@ -54,29 +57,34 @@ export class AuthService {
 
     async register(registerInput:RegisterInput):Promise<Auth>{
         const {
-            name , 
+            firstName , 
+            lastName , 
             email , 
             username , 
             password ,
         } = registerInput ;
 
-        const userByEmail = await User.findOne({email});
-        const userByUsername = await User.findOne({username});
+        const userByEmail = await this.prisma.user.findUnique({where : {email}});
+        const userByUsername = await this.prisma.user.findUnique({where : {username}});
 
         if(userByEmail){
-            throw new HttpError(400 , "This email alredy registerd")
+            throw new Error('Email is invalid')
         }
 
         if(userByUsername){
-            throw new HttpError(400 , "This username alredy registerd")
+            throw new Error('Username is not valid')
         }
 
-        const newUser = await User.create({
-            name , 
-            email , 
-            username , 
-            password , 
-            role : "USER" , 
+
+        const newUser = await this.prisma.user.create({
+            data : {
+                firstName , 
+                lastName , 
+                email , 
+                username , 
+                password , 
+                role : [Role.USER]
+            }
         });
 
         const payload:JwtPayload = {
