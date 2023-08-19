@@ -88,33 +88,69 @@ The GraphQL playground will be accessible at `http://localhost:3000/graphql` by 
 The project structure is organized as follows:
 
 ```
-AparatExpressGraphQLTS/
-├── src/
-│   ├── config/
-│   │   ├── db.ts         # MongoDB configuration
-│   │   └── ...
-│   ├── controllers/
-│   │   ├── user.ts       # User-related logic
-│   │   ├── video.ts      # Video-related logic
-│   │   └── ...
-│   ├── models/
-│   │   ├── user.ts       # User schema
-│   │   ├── video.ts      # Video schema
-│   │   └── ...
-│   ├── routes/
-│   │   ├── auth.ts       # Authentication routes
-│   │   ├── video.ts      # Video-related routes
-│   │   └── ...
-│   ├── schema/
-│   │   ├── index.ts      # GraphQL schema and resolvers
-│   │   └── ...
-│   ├── app.ts            # Express app configuration
-│   └── ...
-├── .env.example          # Example environment variables
-├── .gitignore
+.
+├── LICENSE
 ├── package.json
-├── tsconfig.json
-└── README.md
+├── package-lock.json
+├── prisma
+│   ├── migrations
+│   │   ├── 20230817132514_init
+│   │   │   └── migration.sql
+│   │   └── migration_lock.toml
+│   └── schema.prisma
+├── public
+│   └── uploads
+├── README.md
+├── src
+│   ├── app.ts
+│   ├── config
+│   ├── controllers
+│   │   └── videoController.ts
+│   ├── errors
+│   │   ├── http-error.ts
+│   │   └── validation.ts
+│   ├── inputs
+│   │   ├── createCommentInput.ts
+│   │   ├── createVideoInput.ts
+│   │   ├── loginInput.ts
+│   │   └── registerInput.ts
+│   ├── interfaces
+│   │   ├── contextType.ts
+│   │   └── jwtPayload.ts
+│   ├── jwt
+│   │   └── jwtStrategy.ts
+│   ├── middlewares
+│   │   └── authMiddleware.ts
+│   ├── multer
+│   │   └── storage.ts
+│   ├── object-types
+│   │   ├── auth.ts
+│   │   ├── entity
+│   │   │   ├── category-entity.ts
+│   │   │   ├── comment-entity.ts
+│   │   │   ├── user-entity.ts
+│   │   │   └── video-entity.ts
+│   │   └── status-result.ts
+│   ├── resolvers
+│   │   ├── AuthResolver.ts
+│   │   ├── CommentResolver.ts
+│   │   ├── HelloWorldResolver.ts
+│   │   ├── LikeResolver.ts
+│   │   ├── playListResolver.ts
+│   │   ├── tagResolver.ts
+│   │   ├── TagResolver.ts
+│   │   ├── UserResolver.ts
+│   │   └── VideoResolver.ts
+│   ├── routes
+│   │   ├── index.ts
+│   │   └── video.ts
+│   ├── services
+│   │   ├── AuthService.ts
+│   │   ├── UserService.ts
+│   │   └── VideoService.ts
+│   └── types
+└── tsconfig.json
+
 ```
 
 ## GraphQL
