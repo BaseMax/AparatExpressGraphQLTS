@@ -29,13 +29,27 @@ model Video {
   description String 
   url         String
   path        String
-  categoryId  String?
-  authorId    String 
-  category    Category? @relation("CategoryToVideo", fields: [categoryId], references: [id])
+
+  tags        String[]
+
+  authorId    String
   author      User     @relation("UserToVideo", fields: [authorId], references: [id])
+
+  categoryId  String? 
+  category    Category? @relation("CategoryToVideo", fields: [categoryId], references: [id])
+
+  playListId String?
+  playList    PlayList?  @relation(fields: [playListId] , references: [id])
+
   comments    Comment[]
 }
 
+
+model PlayList {
+  id          String   @id @default(uuid())
+  description String 
+  videos      Video[] 
+}
 
 model Comment {
   id         String   @id @default(uuid())
