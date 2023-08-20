@@ -1,6 +1,7 @@
-import { Field, ID } from "type-graphql";
+import { Field, InputType } from "type-graphql";
 
+@InputType()
 export class createCommentInput { 
     @Field(()=>String)
-    content : string ;
+    text : string ;
 }
