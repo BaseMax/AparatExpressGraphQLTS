@@ -1,4 +1,4 @@
-import { compare, compareSync } from "bcrypt";
+import { compare, compareSync, hashSync } from "bcrypt";
 import { JwtPayload, sign, verify } from "jsonwebtoken";
 import { LoginInput } from "../inputs/loginInput";
 import { RegisterInput } from "../inputs/registerInput";
@@ -36,7 +36,7 @@ export class AuthService {
             throw new Error('Username is invalid')
         }
         
-        const isValidPassword = password === user.password;
+        const isValidPassword = compareSync(password , user.password);
 
         if(!isValidPassword){
             throw new Error('Password is not valid')
@@ -56,7 +56,7 @@ export class AuthService {
     }
 
     async register(registerInput:RegisterInput):Promise<Auth>{
-        const {
+        let {
             firstName , 
             lastName , 
             email , 
@@ -75,14 +75,15 @@ export class AuthService {
             throw new Error('Username is not valid')
         }
 
-
+        password = hashSync(password , 12);
+        
         const newUser = await this.prisma.user.create({
             data : {
                 firstName , 
                 lastName , 
                 email , 
                 username , 
-                password , 
+                password ,
                 role : [Role.USER]
             }
         });
