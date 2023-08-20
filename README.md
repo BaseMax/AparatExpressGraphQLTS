@@ -24,7 +24,7 @@ AparatExpressGraphQLTS is a TypeScript-based GraphQL web service designed to mim
 Before you begin, ensure you have met the following requirements:
 
 - Node.js installed (https://nodejs.org/)
-- MongoDB installed and running (https://www.mongodb.com/try/download/community)
+- Postgresql installed and running (https://www.postgresql.org/download/)
 - Git (optional) for cloning the repository
 
 
