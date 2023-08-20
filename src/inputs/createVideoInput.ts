@@ -13,4 +13,7 @@ export class CreateVideoInput {
 
     @Field(()=>String)
     description : string ;
+
+    @Field(()=>[String])
+    tags : string[] ; 
 }
