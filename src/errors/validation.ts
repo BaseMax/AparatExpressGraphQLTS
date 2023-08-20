@@ -8,6 +8,10 @@ export function validationBody():ValidationChain[] {
         check('description')
             .notEmpty().withMessage('description is required')
         ,
+        check('tags')
+            .notEmpty().withMessage('tags is required')
+            .isArray().withMessage('tags should be array ')
+        ,
     ]
 }
 
