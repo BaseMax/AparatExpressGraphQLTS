@@ -19,6 +19,8 @@ import { HelloWorldResolver } from './resolvers/HelloWorldResolver';
 
 
 import router from './routes/index' ; 
+import { CommentResolver } from "./resolvers/CommentResolver";
+import { PlayListResolver } from "./resolvers/PlayListResolver";
 
 
 (async ()=>{
@@ -37,6 +39,8 @@ import router from './routes/index' ;
             UserResolver  , 
             AuthResolver ,
             VideoResolver ,
+            CommentResolver , 
+            PlayListResolver ,
         ] , 
         authChecker ,
         validate : false ,
