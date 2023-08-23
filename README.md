@@ -27,8 +27,6 @@ Before you begin, ensure you have met the following requirements:
 - Postgresql installed and running (https://www.postgresql.org/download/)
 - Git (optional) for cloning the repository
 
-
-
 ## Demo 
 
 ![Demo](./screenshots/createVideo.png)
@@ -52,8 +50,6 @@ Before you begin, ensure you have met the following requirements:
 ![Demo](./screenshots/register-query.png)
 
 ![Demo](./screenshots/video-findById.png)
-
-
 
 ## Getting Started
 
@@ -79,7 +75,6 @@ Set up your environment variables by creating a `.env` file at the root of the p
 ```bash
 npm run start:dev
 ```
-
 
 The GraphQL playground will be accessible at `http://localhost:3000/graphql` by default. You can explore and test the API using this interface.
 
@@ -150,7 +145,6 @@ The project structure is organized as follows:
 │   │   └── VideoService.ts
 │   └── types
 └── tsconfig.json
-
 ```
 
 ## GraphQL
