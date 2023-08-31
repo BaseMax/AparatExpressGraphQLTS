@@ -23,7 +23,7 @@
   "homepage": "https://github.com/BaseMax/AparatExpressGraphQLTS#readme",
   "dependencies": {
     "@prisma/client": "^5.1.1",
-    "apollo-server-core": "^3.12.0",
+    "apollo-server-core": "^3.12.1",
     "apollo-server-express": "^3.12.0",
     "bcrypt": "^5.1.0",
     "dotenv": "^16.3.1",
